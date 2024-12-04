@@ -1,6 +1,5 @@
 package com.example.navigation1.presentation.ui.screens
 
-import android.widget.Space
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -13,11 +12,15 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
+import com.example.navigation1.presentation.navigation.Screen
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun Screen1() {
+fun Screen1(navController: NavController) {
     Scaffold(
         topBar = {
             TopAppBar(title = { Text(text = "Pantalla 1") })
@@ -28,15 +31,21 @@ fun Screen1() {
             verticalArrangement = Arrangement.Center
         ) {
 
-            Button(onClick = { /* navega  a la pantalla 2 */ }) {
+            Button(onClick = { navController.navigate(Screen.Screen2.route) }) {
                 Text(text = "Pantalla 2")
             }
 
             Spacer(modifier = Modifier.height(16.dp))
 
-            Button(onClick = { /* navega  a la pantalla 3 */ }) {
+            Button(onClick = { navController.navigate(Screen.Screen3.route) }) {
                 Text(text = "Pantalla 3")
             }
         }
     }
+}
+
+@Preview
+@Composable
+fun preview1(){
+    Screen1(rememberNavController())
 }
